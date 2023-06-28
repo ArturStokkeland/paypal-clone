@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}
+    Pending Requests
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "table.css" %}">
+{% endblock %}
+
+{% block main_content %}
+    <h1>Received Requests</h1>
+    <table>
+        <tr class="headRow">
+            <th class="tableCell">From</th>
+            <th class="tableCell">Amount</th>
+            <th class="tableCell">Currency</th>
+            <th class="tableCell">Date</th>
+            <th class="tableCell">View</th>
+        </tr>
+        {% for request in received %}
+            <tr class="contentRow">
+                <td class="tableCell">{{ request.payer.username }}</td>
+                <td class="tableCell">{{ request.amount }}</td>
+                <td class="tableCell">{{ request.currency.currency_code }} ({{ request.currency.currency_symbol }})</td>
+                <td class="tableCell">{{ request.date_issued }}</td>
+                <td class="tableCell"><a href="{% url "view_request_page" id=request.id %}"><button class="btn btn-primary">View</button></a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <h1>Sent Requests</h1>
+    <table>
+        <tr class="headRow">
+            <th class="tableCell">To</th>
+            <th class="tableCell">Amount</th>
+            <th class="tableCell">Currency</th>
+            <th class="tableCell">Date</th>
+        </tr>
+        {% for request in sent %}
+            <tr class="contentRow">
+                <td class="tableCell">{{ request.payer.username }}</td>
+                <td class="tableCell">{{ request.amount }}</td>
+                <td class="tableCell">{{ request.currency.currency_code }} ({{ request.currency.currency_symbol }})</td>
+                <td class="tableCell">{{ request.date_issued }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,11 @@
+<nav id="adminNav">
+    <div>
+        <div  id="links">
+            <a class="navlink" href="{% url "admin-register-page" %}">Register Admin</a>
+            <a class="navlink" href="{% url "admin-user-page" %}">View Users</a>
+            <a class="navlink" href="{% url "admin-history-page" %}">View Transactions</a>
+            <a class="navlink" href="{% url "landing_page" %}">Back To App</a>
+        </div>
+        <a class="navlink" href="{% url "logout-page" %}">Log Out</a>
+    </div>
+</nav>

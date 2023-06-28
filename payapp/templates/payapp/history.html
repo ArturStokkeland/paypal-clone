@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}
+    History
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "table.css" %}">
+{% endblock %}
+
+{% block main_content %}
+    <h1>Transfer History</h1>
+    <table>
+        <tr class="headRow">
+            <th class="tableCell">From</th>
+            <th class="tableCell">To</th>
+            <th class="tableCell">Amount</th>
+            <th class="tableCell">Currency</th>
+            <th class="tableCell">Received Amount</th>
+            <th class="tableCell">Received Currency</th>
+            <th class="tableCell">Date</th>
+        </tr>
+        {% for transfer in transfers %}
+            <tr class="contentRow">
+                <td class="tableCell">{{ transfer.sender.username }}</td>
+                <td class="tableCell">{{ transfer.recipient.username }}</td>
+                {% if transfer.recipient == user %}
+                    <td class="tableCell success">{{ transfer.amount }}</td>
+                {% else %}
+                    <td class="tableCell error">{{ transfer.amount }}</td>
+                {% endif %}
+                <td class="tableCell">{{ transfer.currency.currency_code }} ({{ transfer.currency.currency_symbol }})</td>
+                {% if transfer.recipient == user %}
+                    <td class="tableCell success">{{ transfer.received_amount }}</td>
+                {% else %}
+                    <td class="tableCell error">{{ transfer.received_amount }}</td>
+                {% endif %}
+                <td class="tableCell">{{ transfer.received_currency.currency_code }} ({{ transfer.received_currency.currency_symbol }})</td>
+                <td class="tableCell">{{ transfer.date_issued }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

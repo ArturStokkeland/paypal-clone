@@ -1,0 +1,15 @@
+table {
+    border: 1px solid black;
+}
+
+.headRow {
+    background-color: rgb(148 163 184);
+}
+
+.contentRow:hover {
+    background-color: rgb(229 231 235);
+}
+
+.tableCell {
+    padding: 1rem 2rem;
+}

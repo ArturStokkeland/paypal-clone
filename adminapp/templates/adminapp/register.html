@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}
+    Register Admin
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "form.css" %}">
+{% endblock %}
+
+{% block main_content %}
+    <div id="form-container">
+        <h1>Register Admin</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+        {% if messages %}
+            {% for message in messages %}
+                <p class="{{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block page_title %}Payapp - Webapps 2023{% endblock %}</title>
+    <link rel="stylesheet" href="{% static "navbar.css" %}">
+    <link rel="stylesheet" href="{% static "main.css" %}">
+    {% block css_files %}{% endblock %}
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    {% if "/admins/" in request.path %}
+        {% include "adminapp/includes/navbar.html" %}
+    {% else %}
+        {% include "payapp/includes/navbar.html" %}
+    {% endif %}
+    <div id="container">
+        {% block main_content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

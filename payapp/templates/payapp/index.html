@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}
+    Payapp
+{% endblock %}
+
+{% block main_content %}
+    <h1>Hello {{ user.first_name }}!</h1>
+    <p>Your balance is {{ user.wallet.balance }}{{ user.wallet.currency.currency_symbol }} ({{ user.wallet.currency.currency_name }})</p>
+{% endblock %}

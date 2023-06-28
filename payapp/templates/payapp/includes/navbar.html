@@ -1,0 +1,15 @@
+<nav id="appNav">
+    <div>
+        <div  id="links">
+            <a class="navlink" href="{% url "landing_page" %}">Home</a>
+            <a class="navlink" href="{% url "transaction_history_page" %}">Transaction History</a>
+            <a class="navlink" href="{% url "pending_requests_page" %}">Pending Requests</a>
+            <a class="navlink" href="{% url "transfer_page" %}">Transfer Money</a>
+            <a class="navlink" href="{% url "request_page" %}">Request Money</a>
+            {% if user.is_staff %}
+                <a class="navlink" href="{% url "admin-register-page" %}">Admin Area</a>
+            {% endif %}
+        </div>
+        <a class="navlink" href="{% url "logout-page" %}">Log Out</a>
+    </div>
+</nav>

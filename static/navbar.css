@@ -1,0 +1,39 @@
+nav {
+    /*position: fixed;*/
+}
+
+#appNav {
+    background-color: #333;
+}
+
+#adminNav {
+    background-color: #3875d7;
+}
+
+nav > div {
+    align-items: center;
+    display: flex;
+    height: 80px;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 80%;
+}
+
+#links {
+    display: flex;
+    gap: 40px;
+}
+
+#links > li {
+    display: inline;
+}
+
+.navlink {
+    color: white;
+    font-size: 1.4rem;
+    text-decoration: none;
+}
+
+.navlink:hover {
+    color: #81d4fa;
+}

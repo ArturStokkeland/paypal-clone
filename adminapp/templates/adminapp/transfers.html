@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}
+    Transfer List
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "table.css" %}">
+{% endblock %}
+
+{% block main_content %}
+    <h1>List of all transfers</h1>
+    <table>
+        <tr class="headRow">
+            <th class="tableCell">Sender</th>
+            <th class="tableCell">Recipient</th>
+            <th class="tableCell">Amount</th>
+            <th class="tableCell">Currency</th>
+            <th class="tableCell">Received Amount</th>
+            <th class="tableCell">Received Currency</th>
+            <th class="tableCell">Date</th>
+        </tr>
+        {% for transfer in transfers %}
+            <tr class="contentRow">
+                <td class="tableCell">{{ transfer.sender }}</td>
+                <td class="tableCell">{{ transfer.recipient }}</td>
+                <td class="tableCell">{{ transfer.amount }}</td>
+                <td class="tableCell">{{ transfer.currency.currency_code }} ({{ transfer.currency.currency_symbol }})</td>
+                <td class="tableCell">{{ transfer.received_amount }}</td>
+                <td class="tableCell">{{ transfer.received_currency.currency_code }} ({{ transfer.currency.currency_symbol }})</td>
+                <td class="tableCell">{{ transfer.date_issued }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

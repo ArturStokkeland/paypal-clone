@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" href="{% static "register/form.css" %}">
+</head>
+<body>
+<div id="form-container">
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Log in</button>
+    </form>
+    <p>Don't have an account? <a href="{% url "register-page" %}">Register</a></p>
+</div>
+</body>
+</html>

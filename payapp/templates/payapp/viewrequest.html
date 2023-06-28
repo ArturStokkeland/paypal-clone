@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}
+    Request Details
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "table.css" %}">
+{% endblock %}
+
+{% block main_content %}
+    <h1>Review Request</h1>
+    <table>
+        <tr class="headRow">
+            <th class="tableCell">From</th>
+            <th class="tableCell">Amount</th>
+            <th class="tableCell">Currency</th>
+            <th class="tableCell">Converted Amount</th>
+            <th class="tableCell">Converted Currency</th>
+
+        </tr>
+        <tr class="contentRow">
+            <td class="tableCell">{{ request.requester.username }}</td>
+            <td class="tableCell">{{ request.amount }}</td>
+            <td class="tableCell">{{ request.currency.currency_code }} ({{ request.currency.currency_symbol }})</td>
+            <td class="tableCell">{{ request.received_amount }}</td>
+            <td class="tableCell">{{ request.received_currency.currency_code }} ({{ request.received_currency.currency_symbol }})</td>
+        </tr>
+    </table>
+
+    {% if request.status == "Pending" %}
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" name="action" value="accept" class="btn btn-success m-2">Accept</button>
+        <button type="submit" name="action" value="decline" class="btn btn-danger m-2">Decline</button>
+    </form>
+    {% endif %}
+    {% if messages %}
+        {% for message in messages %}
+            <p class="m-2 {{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

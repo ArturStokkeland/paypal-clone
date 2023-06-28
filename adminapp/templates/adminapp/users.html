@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}
+    User List
+{% endblock %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "table.css" %}">
+{% endblock %}
+
+{% block main_content %}
+    <h1>List of all registered users</h1>
+    <table>
+        <tr class="headRow">
+            <th class="tableCell">Username</th>
+            <th class="tableCell">Email</th>
+            <th class="tableCell">Balance</th>
+            <th class="tableCell">Currency</th>
+            <th class="tableCell">Role</th>
+        </tr>
+        {% for user in users %}
+            <tr class="contentRow">
+                <td class="tableCell">{{ user.username }}</td>
+                <td class="tableCell">{{ user.email }}</td>
+                <td class="tableCell">{{ user.wallet.balance }}</td>
+                <td class="tableCell">{{ user.wallet.currency.currency_code }}</td>
+                {% if user.is_superuser %}
+                    <td class="tableCell">Super User</td>
+                {% elif user.is_staff %}
+                    <td class="tableCell">Staff</td>
+                {% else %}
+                    <td class="tableCell">User</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
